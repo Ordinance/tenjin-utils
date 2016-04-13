@@ -1,3 +1,8 @@
+/*
+* This query is to generate a list of advertising_ids who have made purchase before.
+* @DATE => date you want to capture for the advertising_ids
+*/
+
 SELECT
   d.name AS app_name
   , a.platform
@@ -32,8 +37,7 @@ LEFT OUTER JOIN (
 ON a.app_id = d.id
 WHERE
   event_type = 'purchase'
-  AND bundle_id = 'com.klab.bleach'
-  AND acquired_at >= '2016-01-14'
+  AND acquired_at >= '@DATE'
 GROUP BY
   d.name
   , a.platform
