@@ -11,7 +11,7 @@ SELECT
   , c.name AS channel
   , a.advertising_id
   , SUM(CASE WHEN date_diff('sec', a.acquired_at, a.created_at) / 86400 <= 90
-  THEN a.revenue END)/100  :: double precision AS net_90day_revenue
+  THEN a.revenue END)/100  :: DOUBLE PRECISION AS net_90day_revenue
 FROM events a
 LEFT OUTER JOIN (
   SELECT
