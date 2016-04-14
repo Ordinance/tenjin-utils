@@ -1,5 +1,5 @@
-# Tenjin utilities
-Core to this project will be to provide out of the box templates for modeling data on any of Tenjin's hosted data warehouses.
+# Tenjin utils package
+This project provides out of the box templates for modeling data on any of Tenjin's hosted data warehouses.
 
 The process for contributing to this `tenjin-utils` repository is the following:
   1. Fork the `tenjin-utils` project
