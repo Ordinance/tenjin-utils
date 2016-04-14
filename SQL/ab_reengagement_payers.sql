@@ -12,7 +12,7 @@ SELECT
   , sq.platform
   , sq.country
   , sq.acquired_at
-  , sq.advertising_idsd
+  , sq.advertising_id
   , sq.name AS channel
   , sq.net_90day_revenue
   , date_diff('day', '@START_DATE', sq2.last_login_date) AS lapsed_day
