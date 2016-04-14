@@ -11,7 +11,7 @@ SELECT
   , c.name AS channel
   , a.advertising_id
   , SUM(CASE WHEN date_diff('sec', a.acquired_at, a.created_at) / 86400 <= 90
-  THEN a.revenue END)/100/0.7  :: DOUBLE PRECISION AS day90_revenue
+  THEN a.revenue END)/100  :: double precision AS net_90day_revenue
 FROM events a
 LEFT OUTER JOIN (
   SELECT
@@ -35,9 +35,8 @@ LEFT OUTER JOIN (
   FROM apps
 ) d
 ON a.app_id = d.id
-WHERE
+WHERE 
   event_type = 'purchase'
-  AND acquired_at >= '@DATE'
 GROUP BY
   d.name
   , a.platform
@@ -45,3 +44,4 @@ GROUP BY
   , a.acquired_at
   , c.name
   , a.advertising_id
+;
