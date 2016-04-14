@@ -5,6 +5,6 @@
 */
 
 SELECT COUNT(*)
-FROM raw_events
+FROM events
 WHERE created_at::DATE >= '@START_DATE'
   AND created_at::DATE < '@END_DATE';

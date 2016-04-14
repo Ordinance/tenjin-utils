@@ -6,7 +6,7 @@
 */
 
 SELECT DISTINCT advertising_id
-FROM raw_events 
+FROM events 
 WHERE event_type = 'purchase'
   AND bundle_id = '@YOUR_BUNDLE_ID'
   AND platform = '@YOUR_APP_PLATFORM';
