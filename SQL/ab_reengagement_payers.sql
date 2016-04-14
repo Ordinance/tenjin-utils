@@ -12,9 +12,9 @@ SELECT
   , sq.platform
   , sq.country
   , sq.acquired_at
-  , sq.advertising_id
+  , sq.advertising_idsd
   , sq.name AS channel
-  , sq.day90_revenue
+  , sq.net_90day_revenue
   , date_diff('day', '@START_DATE', sq2.last_login_date) AS lapsed_day
   , MOD(CAST(SUBSTRING(REGEXP_REPLACE(sq.advertising_id, '[^0-9]'),LEN(REGEXP_REPLACE(sq.advertising_id, '[^0-9]'))-1, 2) AS INT),2) AS ab_flg
 FROM (
@@ -26,7 +26,7 @@ FROM (
     , c.name
     , a.advertising_id
     , SUM(CASE WHEN date_diff('sec', a.acquired_at, a.created_at) / 86400 <= 90
-    THEN a.revenue END)/100/0.7 :: DOUBLE PRECISION AS day90_revenue
+    THEN a.revenue END)/100 :: DOUBLE PRECISION AS net_90day_revenue
   FROM events a
   LEFT OUTER JOIN (
     SELECT
