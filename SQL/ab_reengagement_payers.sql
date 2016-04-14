@@ -1,7 +1,7 @@
 /*
 * This query is to generate a list of advertising_ids so we can re-engage users who have purchased something within 90-days of install.
 * It will dynamically "mark" the users with a flag so you can measure lift of the users after the re-engagement campaign runs.
-* Replace there variables before running the query. 
+* Replace these variables before running the query. 
 * @START_DATE => insert campaign beginning date 
 * @DATE => date you want to capture for the advertising_ids
 * @YOUR_BUNDLE_ID => the bundle_id of your app
