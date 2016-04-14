@@ -4,6 +4,7 @@ This project provides out of the box templates for modeling data on any of Tenji
 To contribute, follow the steps below:
   1. Fork the `tenjin-utils` project
   2. Make any changes to your local `tenjin-utils` project
-  3. Any changes that you want to contribute to `tenjin/tenjin-utils` master, submit a pull request for
-  4. A Tenjin admin will review and approve your pull request
+  3. Submit a Pull Request to `tenjin/tenjin-utils` master with your changes
+  4. A Tenjin admin will review your request
+  5. If it looks good it gets merged
   5. That's it!
