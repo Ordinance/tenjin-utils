@@ -8,6 +8,10 @@ Pick from one of your favorite tools to analyze your DataVault data. Customers u
 Using the credentials provied to you in your <a href="https://www.tenjin.io/dashboard/data_vault">Tenjin dashboard</a> you can directly use your appropriate Redshift driver/connector for your tool to use DataVault.
 
 Each of the folders in `tenjin-utils` will be dedicated to a specific language that you can use in the tool of your choice.
+
+Documentation and Help
+----
+For reference to the schema of your standard DataVault please contact support@tenjin.io or visit the <a href="http://help.tenjin.io/">Tenjin help forums</a>.
   
 Contributing
 ----
