@@ -4,7 +4,7 @@
 revenue => in USD cents
 */
 
-SELECT 
+SELECT
 	a.bundle_id
 	, a.platform
 	, a.advertising_id
@@ -31,7 +31,7 @@ FROM (
 		, source_campaign_id
 		, acquired_at::DATE
 	HAVING SUM(revenue) > 0
-	) a
+) a
 LEFT OUTER JOIN campaigns b
 ON a.source_campaign_id = b.id
 LEFT OUTER JOIN ad_networks c
