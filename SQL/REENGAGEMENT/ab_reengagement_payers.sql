@@ -1,7 +1,8 @@
 /*
 * This query is to generate a list of advertising_ids so we can re-engage users who have purchased something within 90-days of install.
 * It will dynamically "mark" the users with a flag so you can measure lift of the users after the re-engagement campaign runs.
-* @START_DATE => insert beginning date 
+* Replace these variables before running the query. 
+* @START_DATE => insert campaign beginning date 
 * @DATE => date you want to capture for the advertising_ids
 * @YOUR_BUNDLE_ID => the bundle_id of your app
 */
@@ -13,9 +14,8 @@ SELECT
   , sq.acquired_at
   , sq.advertising_id
   , sq.name AS channel
-  , sq.day90_revenue
+  , sq.net_90day_revenue
   , date_diff('day', '@START_DATE', sq2.last_login_date) AS lapsed_day
-  # AB test flg
   , MOD(CAST(SUBSTRING(REGEXP_REPLACE(sq.advertising_id, '[^0-9]'),LEN(REGEXP_REPLACE(sq.advertising_id, '[^0-9]'))-1, 2) AS INT),2) AS ab_flg
 FROM (
   SELECT
@@ -26,7 +26,7 @@ FROM (
     , c.name
     , a.advertising_id
     , SUM(CASE WHEN date_diff('sec', a.acquired_at, a.created_at) / 86400 <= 90
-    THEN a.revenue END)/100/0.7 AS day90_revenue
+    THEN a.revenue END)/100 :: DOUBLE PRECISION AS net_90day_revenue
   FROM events a
   LEFT OUTER JOIN (
     SELECT
@@ -70,6 +70,4 @@ LEFT OUTER JOIN (
     , advertising_id
 ) sq2
 ON sq.platform = sq2.platform AND sq.advertising_id = sq2.advertising_id
-Reply
-Creating Facebook retargeting campaign by using DataVault
-Reply as linked Topic
+;
