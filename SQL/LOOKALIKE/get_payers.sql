@@ -1,13 +1,15 @@
-/* This is a query to generate the list of advertising ID who has made in-app purchase before.
-You can upload the list of advertising ID to Facebook/Twitter for lookalike campaigns.
-The list includes acquisition channel, the date when the device installed the app
-, and total revenue(USD in cents, after google/apple cut).
-You can create multiple lookalike campaigns by segmenting the list with these parameters
-, to see which segment performs better.
-(ex. revenue < $5, revenue: $5-$10, revenue >= $10)
-
-@DATE => refers to the date that you want to get the list for.
-@BUNDLEID => bundle_id for your app
+/* 
+* This is a query to generate the list of advertising ID who has made in-app purchase before.
+* You can upload the list of advertising ID to Facebook/Twitter for lookalike campaigns.
+* The list includes acquisition channel, the date when the device installed the app
+* , and total revenue(USD in cents, after google/apple cut).
+* You can create multiple lookalike campaigns by segmenting the list with these parameters
+* , to see which segment performs better.
+* (ex. revenue < $5, revenue: $5-$10, revenue >= $10)
+*
+* Replace these variables before running the query. 
+* @DATE => refers to the date that you want to get the list for.
+* @BUNDLEID => bundle_id for your app
 */
 
 SELECT
