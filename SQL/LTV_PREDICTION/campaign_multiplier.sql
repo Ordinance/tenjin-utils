@@ -11,7 +11,7 @@
 SELECT
   rev.bundle_id
   , rev.platform
-  , b.name AS "campaign"
+  , c.name AS "campaign"
   , SUM(rev.rev_14d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_14d_7d
   , SUM(rev.rev_30d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_30d_7d
   , SUM(rev.rev_60d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_60d_7d
@@ -41,12 +41,12 @@ FROM (
     , platform
     , source_campaign_id
 ) rev
-LEFT OUTER JOIN campaigns b
-ON rev.source_campaign_id = b.id
-LEFT OUTER JOIN ad_networks c
-ON b.ad_network_id = c.id
+LEFT OUTER JOIN campaigns c
+ON rev.source_campaign_id = c.id
+LEFT OUTER JOIN ad_networks an
+ON c.ad_network_id = an.id
 GROUP BY 
   rev.bundle_id
   , rev.platform
-  , b.name
+  , c.name
 ;
