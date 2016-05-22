@@ -3,7 +3,7 @@
 
 require('redshift')
 
-host <- "[YOUR_HOST_NAME]"
+host <- "YOUR_HOST_NAME"
 port <- "5439"
 database <- "YOUR_DATABASE_NAME"
 user <- "YOUR_USERNAME"
