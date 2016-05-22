@@ -1,5 +1,5 @@
 /* 
-* This is the query to generate 14, 30, 60, 90days ltv multiplier against 7days ltv for each channel.
+* This is the query to generate 14, 30, 60, 90days ltv multiplier against 7days ltv for each campaign.
 * Once you figure out the multiplier, you can predict x-day ltv in each cohort 
 * by multipling actual 7days ltv by the multiplier.
 *
@@ -9,13 +9,13 @@
 */
 
 SELECT
-  a.bundle_id
-  , a.platform
-  , c.name AS channel
-  , SUM(a.rev_14d)/SUM(a.rev_7d) :: DOUBLE PRECISION AS multiplier_14d_7d
-  , SUM(a.rev_30d)/SUM(a.rev_7d) :: DOUBLE PRECISION AS multiplier_30d_7d
-  , SUM(a.rev_60d)/SUM(a.rev_7d) :: DOUBLE PRECISION AS multiplier_60d_7d
-  , SUM(a.rev_90d)/SUM(a.rev_7d) :: DOUBLE PRECISION AS multiplier_90d_7d
+  rev.bundle_id
+  , rev.platform
+  , b.name AS "campaign"
+  , SUM(rev.rev_14d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_14d_7d
+  , SUM(rev.rev_30d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_30d_7d
+  , SUM(rev.rev_60d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_60d_7d
+  , SUM(rev.rev_90d)/SUM(rev.rev_7d) :: DOUBLE PRECISION AS multiplier_90d_7d
 FROM (
   SELECT
     bundle_id
@@ -40,13 +40,13 @@ FROM (
     bundle_id
     , platform
     , source_campaign_id
-) a
+) rev
 LEFT OUTER JOIN campaigns b
-ON a.source_campaign_id = b.id
+ON rev.source_campaign_id = b.id
 LEFT OUTER JOIN ad_networks c
 ON b.ad_network_id = c.id
 GROUP BY 
-  a.bundle_id
-  , a.platform
-  , c.name
+  rev.bundle_id
+  , rev.platform
+  , b.name
 ;
