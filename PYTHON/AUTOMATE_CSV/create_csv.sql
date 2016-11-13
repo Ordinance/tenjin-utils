@@ -6,7 +6,7 @@ SELECT
   , d.store_id
   , d.platform
   , d.name AS app_name
-  , SUM(spend) AS spend
+  , SUM(spend)/100 :: DOUBLE PRECISION AS spend
   , SUM(installs) AS installs
   , SUM(clicks) AS clicks
   , SUM(impressions) AS impressions

@@ -27,9 +27,9 @@ user = 'user'
 # DataVault password
 password = 'password'
 #File path you put this script and sql file
-path = '/Users/Makoto/Desktop/tmp/'
+path = '/Users/Desktop/tmp/'
 #Email address you want to send csv from
-from_addr = 'makoto@tenjin.io'
+from_addr = 'test@gmail.com'
 #Email password
 email_pass = 'abc'
 
