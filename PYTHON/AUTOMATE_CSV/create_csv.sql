@@ -17,8 +17,6 @@ LEFT OUTER JOIN ad_networks c
 ON b.ad_network_id = c.id
 LEFT OUTER JOIN apps d
 ON b.app_id = d.id
-WHERE bundle_id = 'BUNDLE_ID'
-AND LOWER(c.name) = 'NETWORK'
-AND platform = 'PLATFORM'
+WHERE LOWER(c.name) = 'NETWORK'
 GROUP BY 1,2,3,4,5,6,7
 ORDER BY 1

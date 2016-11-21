@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # This script is for send automated csv via gmail to custom channel from DataVault.
 # 1) Put custom_channel.py and create_csv.sql in the path below
-# 2) Replace host, dbname, port, user, password, pah, from_addr, email_pass below
-# 3) Run command: python custom_channel.py <bundle_id> <platform> <ad_network_name> <tenjin_campaign_id> <to_email_address>
+# 2) Replace host, dbname, port, user, password, path, from_addr, email_pass below
+# 3) Run command: python custom_channel.py <ad_network_name> <tenjin_campaign_id> <to_email_address>
 import os.path
 import smtplib
 import psycopg2
@@ -43,14 +43,14 @@ def create_csv():
     fd = open(path + 'create_csv.sql', 'r')
     sqlFile = fd.read()
 
-    sqlFile2 = sqlFile.replace('BUNDLE_ID',args[1]).replace('PLATFORM',args[2]).replace('NETWORK',args[3]).replace('TENJIN_CAMPAING_ID',args[4])
+    sqlFile2 = sqlFile.replace('NETWORK',args[1]).replace('TENJIN_CAMPAING_ID',args[2])
     fd.close()
     print sqlFile2
     cur.execute(sqlFile2)
     field_names = [i[0] for i in cur.description]
     rows = cur.fetchall()
 
-    with open(path + args[1] + '-' + args[2] + '-' + args[3] + '.csv', 'w') as f:
+    with open(path + args[1] + '.csv', 'w') as f:
         writer = csv.writer(f, lineterminator='\n')
         writer.writerow(field_names)    
         writer.writerows(rows)
@@ -89,10 +89,10 @@ if __name__ == '__main__':
 
     create_csv()
 
-    to_addr = args[5]
+    to_addr = args[3]
     subject = "test" 
     body = "test body"
     mime={'type':'text', 'subtype':'comma-separated-values'}
-    attach_file={'name':args[1] + '-' + args[2] + '-' + args[3] + '.csv', 'path': path + args[1] + '-' + args[2] + '-' + args[3] + '.csv'}
+    attach_file={'name':args[1] + '.csv', 'path': path + args[1] + '.csv'}
     msg = create_message(from_addr, to_addr, subject, body, mime, attach_file)
     send(from_addr, [to_addr], msg)
