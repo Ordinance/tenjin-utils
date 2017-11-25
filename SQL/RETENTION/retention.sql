@@ -1,4 +1,4 @@
-/* Calculate the retention rate based on both relative and absolute timpe. Our dashboard uses relative time, 
+/* Calculate the retention rate based on both relative and absolute time. Our dashboard uses relative time, 
  * but you can also get retention rate based on absolute time by this query.
  * @BUNDLEID is the bundle_id or package name of your app that you're calculating retention rate for
  * @START_DATE is the start date when you're calculating retention rate for
