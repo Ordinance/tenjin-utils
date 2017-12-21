@@ -16,6 +16,33 @@ For reference to the schema of your standard DataVault please contact support@te
 Scheme
 ----
 ![scheme](https://gist.github.com/lepfhty/a24fa79adb011c2b52ae8e79e1854f9d/raw/eea4358a93193fb677358130b30b92cecabe5a12/tenjin-schema.png)
+
+Table description
+----
+* events
+    * device level data that comes from Tenjin SDK or 3rd party attribution provider
+* campaigns
+    * campaigns that users are attributed to, or campaigns from ad-networks API
+* ad_networks
+    * list of ad networks
+* apps
+    * list of apps
+* daily_spend
+    * includes pre-install metrics(such as imps, clicks, installs, and spend) by campaign and date. “spend” is spend amount converted to USD, and “original_spend” is spend amount in “original_currency”
+* daily_country_spend
+    * Includes pre-install metrics(such as imps, clicks, installs, and spend) by date, campaign, and country. “spend” is spend amount converted to USD, and “original_spend” is spend amount in “original_currency”
+    * Only for ad-networks that have spend by country. Some ad-networks don’t have spend by country breakdown. So daily_country_spend contains partial spend of daily_spend
+* daily_behavior
+    * Pre-aggregated view from events table. It includes non-cohort metrics(such as dau, arpdau) by date, campaign, country, and site
+* cohort_behavior
+    * Pre-aggregated view from events table. It includes cohort metrics(such as ltv, retained users) by date, campaign, country, and site
+    *“xday” is day of life (relative to acquisition timestamp, starting with 0). So “revenue” on xday = 1 means revenue generated on day 1 after the acquisition
+* publisher_apps
+    * publisher campaigns that we get from ad-network API
+* daily_ad_revenue
+    * includes ad revenue data by publisher campaigns, date, and country
+* ad_engagements
+    * includes click or impression data for each device. It only has data for non-self attributing ad-networks. We don’t have data for Google or Facebook.
   
 Contributing
 ----
