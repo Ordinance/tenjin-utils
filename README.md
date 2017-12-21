@@ -12,6 +12,10 @@ Each of the folders in `tenjin-utils` will be dedicated to a specific language t
 Documentation and Help
 ----
 For reference to the schema of your standard DataVault please contact support@tenjin.io or visit the <a href="http://help.tenjin.io/">Tenjin help forums</a>.
+
+Scheme
+----
+![scheme](https://gist.github.com/lepfhty/a24fa79adb011c2b52ae8e79e1854f9d/raw/eea4358a93193fb677358130b30b92cecabe5a12/tenjin-schema.png)
   
 Contributing
 ----
