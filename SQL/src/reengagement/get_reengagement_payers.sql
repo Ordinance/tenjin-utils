@@ -1,4 +1,3 @@
-
 /*
 * This query is to generate a list of advertising_ids so we can re-engage users who have purchased something before.
 * You can upload the list to Facebook/send ad-network for re-engagagement campaign.
@@ -9,7 +8,7 @@
 * Replace these variables before running the query. 
 * @START_DATE => insert campaign beginning date 
 * @DATE => date you want to capture for the advertising_ids
-* @YOUR_BUNDLE_ID => the bundle_id of your app
+* @BUNDLEID => the bundle_id of your app
 */
 
 SELECT 

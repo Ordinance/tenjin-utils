@@ -6,5 +6,5 @@
 
 SELECT COUNT(*)
 FROM events
-WHERE created_at::DATE >= '@START_DATE'
-  AND created_at::DATE < '@END_DATE';
+WHERE created_at :: DATE >= '@START_DATE'
+  AND created_at :: DATE < '@END_DATE';

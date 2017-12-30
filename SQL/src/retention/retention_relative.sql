@@ -4,28 +4,28 @@
  * Speciffy @START_DATE and @END_DATE with actual date that you're calculating retention rate for
  */
 SELECT 
-  acquired_at::date,
-  count(distinct coalesce(advertising_id, developer_device_id)) AS tracked_installs,
-  count(distinct CASE
+  acquired_at :: DATE,
+  COUNT(distinct coalesce(advertising_id, developer_device_id)) AS tracked_installs,
+  COUNT(distinct CASE
         WHEN date_diff('sec',acquired_at,created_at)/86400 = 1 
         THEN coalesce(advertising_id, developer_device_id) 
-        end)/count(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION AS d1_rr,
-  count(distinct CASE
+        end)/COUNT(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION AS d1_rr,
+  COUNT(distinct CASE
         WHEN date_diff('sec',acquired_at,created_at)/86400 = 3 
         THEN coalesce(advertising_id, developer_device_id) 
-        end)/count(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d3_rr,
-  count(distinct CASE
+        end)/COUNT(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d3_rr,
+  COUNT(distinct CASE
         WHEN date_diff('sec',acquired_at,created_at)/86400 = 7 
         THEN coalesce(advertising_id, developer_device_id) 
-        end)/count(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d7_rr,
-  count(distinct CASE
+        end)/COUNT(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d7_rr,
+  COUNT(distinct CASE
         WHEN date_diff('sec',acquired_at,created_at)/86400 = 14 
         THEN coalesce(advertising_id, developer_device_id) 
-        end)/count(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d14_rr,
-  count(distinct CASE
+        end)/COUNT(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d14_rr,
+  COUNT(distinct CASE
         WHEN date_diff('sec',acquired_at,created_at)/86400 = 30 
         THEN coalesce(advertising_id, developer_device_id) 
-        end)/count(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d30_rr
+        end)/COUNT(distinct coalesce(advertising_id, developer_device_id)) :: DOUBLE PRECISION  AS d30_rr
 FROM events
 WHERE bundle_id = '@BUNDLEID'
   AND acquired_at >= '@START_DATE' AND acquired_at < '@END_DATE'

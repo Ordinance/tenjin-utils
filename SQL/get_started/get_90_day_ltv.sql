@@ -9,7 +9,7 @@ SELECT bundle_id
   , platform 
   , SUM(CASE WHEN date_diff('sec', acquired_at, created_at)/86400 <= 90 THEN revenue/100.0 END) AS revenue_90_day
 FROM events
-WHERE acquired_at::date >= '2015-10-01'
+WHERE acquired_at :: DATE >= '2015-10-01'
 GROUP BY bundle_id
   , platform
 ;
