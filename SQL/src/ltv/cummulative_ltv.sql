@@ -11,7 +11,7 @@ SELECT
 FROM (SELECT
   bundle_id,
   date_diff('sec', acquired_at, created_at) / 86400 AS xday,
-  COUNT(DISTINCT advertising_id) AS payers,
+  COUNT(DISTINCT coalesce(advertising_id, developer_device_id)) AS payers,
   SUM(revenue) / 100.0 AS ltv
 FROM events
 WHERE event_type = 'purchase'
@@ -21,7 +21,7 @@ GROUP BY 1,
 LEFT OUTER JOIN (SELECT
   bundle_id,
   date_diff('sec', acquired_at, created_at) / 86400 AS xday,
-  COUNT(DISTINCT advertising_id) AS payers,
+  COUNT(DISTINCT coalesce(advertising_id, developer_device_id)) AS payers,
   SUM(revenue) / 100.0 AS ltv
 FROM events
 WHERE event_type = 'purchase'
@@ -32,7 +32,7 @@ GROUP BY 1,
   AND a.xday >= b.xday
 LEFT OUTER JOIN (SELECT
   bundle_id,
-  COUNT(DISTINCT advertising_id) AS payers
+  COUNT(DISTINCT coalesce(advertising_id, developer_device_id)) AS payers
 FROM events
 WHERE event_type = 'purchase'
 AND bundle_id = '@BUNDLEID'

@@ -6,10 +6,9 @@
 
 /*DAU for a specific day by country*/
 
-SELECT country, COUNT(DISTINCT advertising_id)
+SELECT country, COUNT(DISTINCT coalesce(advertising_id, developer_device_id)) as DAU
 FROM events
-WHERE created_at::DATE = @DATE
-  AND bundle_id = @BUNDLEID
-  AND platform = @PLATFORM
+WHERE created_at :: DATE = '@DATE'
+  AND bundle_id = '@BUNDLEID'
+  AND platform = '@PLATFORM'
 GROUP BY 1;
-
