@@ -1,3 +1,6 @@
+# This repository has been moved to the Tenjin organization: https://github.com/tenjin/tenjin-utils.
+
+
 # Tenjin utils package
 This project provides out of the box templates for modeling data on any of Tenjin's hosted data warehouses. The goal is to help marketers and data scientists learn and re-use common techniques that are applicable for understanding their mobile app users.
 
